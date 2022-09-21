@@ -1,0 +1,13 @@
+@media only screen and (min-width: 0) {
+  #create-recipe {
+    width: 300px;
+    padding: 0 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #create-recipe {
+    width: 700px;
+    padding: 0 2rem;
+  }
+}
