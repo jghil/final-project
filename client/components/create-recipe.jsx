@@ -13,7 +13,7 @@ export default class CreateRecipe extends React.Component {
       prepTime: '',
       cookTime: '',
       beverage: false,
-      breakfastBrunch: false,
+      breakfast: false,
       lunch: false,
       snack: false,
       dinner: false,
@@ -31,7 +31,7 @@ export default class CreateRecipe extends React.Component {
     this.handlePrepTimeChange = this.handlePrepTimeChange.bind(this);
     this.handleCookTimeChange = this.handleCookTimeChange.bind(this);
     this.handleBeverageChange = this.handleBeverageChange.bind(this);
-    this.handleBreakfastBrunchChange = this.handleBreakfastBrunchChange.bind(this);
+    this.handleBreakfastChange = this.handleBreakfastChange.bind(this);
     this.handleLunchChange = this.handleLunchChange.bind(this);
     this.handleSnackChange = this.handleSnackChange.bind(this);
     this.handleDinnerChange = this.handleDinnerChange.bind(this);
@@ -95,9 +95,9 @@ export default class CreateRecipe extends React.Component {
     });
   }
 
-  handleBreakfastBrunchChange() {
+  handleBreakfastChange() {
     this.setState({
-      breakfastBrunch: !this.state.breakfastBrunch
+      breakfast: !this.state.breakfast
     });
   }
 
@@ -145,7 +145,7 @@ export default class CreateRecipe extends React.Component {
   render() {
     return (
       <div className="container shadow my-5 pb-5 rounded" id="create-recipe">
-        <div className="d-flex justify-content-center p-4 m-0">
+        <div className="d-flex justify-content-center p-4 mb-0">
           <h4 className="font-italic">Add a Recipe</h4>
         </div>
         <div
@@ -156,167 +156,203 @@ export default class CreateRecipe extends React.Component {
           }}
         />
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="title">
-              Recipe Title
-            </label>
-          </div>
-          <input
+          <div className="form-floating mb-3">
+            <input
             type="text"
             name="title"
             id="title"
             placeholder="Example: Classic Cheeseburger"
             value={this.state.title}
             onChange={this.handleTitleChange}
+            className="form-control form-control mb-2"
             required/>
-          <div>
-            <label htmlFor="description">
-              Description
-            </label>
+            <label htmlFor="floatingInput">Title</label>
           </div>
-          <input
+          <div className="form-floating mb-3">
+            <textarea
             type="text"
             name="description"
             id="description"
-            placeholder="recipe description here"
+            placeholder="The most delicious cheeseburger.."
+            className="mb-2 form-control form-control"
             value={this.state.description}
             onChange={this.handleDescriptionChange}
             required />
-          <div>
-            <label htmlFor="ingredients">
-              Ingredients
-            </label>
+            <label htmlFor="floatingInput">Description</label>
           </div>
-          <input
+          <div className="row">
+            <div className="col-7">
+              <div className="form-floating mb-3">
+                <input
             type="text"
             name="ingredients"
             id="ingredients"
-            placeholder="recipe ingredients here"
+            placeholder="Recipe Ingredients"
             value={this.state.ingredients}
             onChange={this.handleIngredientsChange}
+            className="mb-2 form-control form-control-sm"
             required />
-          <label htmlFor="amount">
-            amount
-          </label>
-          <input
-            type="text"
-            name="amount"
-            id="amount"
-            value={this.state.amount}
-            onChange={this.handleAmountChange}
-            required />
-          <div>
-            <label htmlFor="directions">
-              Directions
-            </label>
+                <label htmlFor="floatingInput">Ingredients</label>
+              </div>
+            </div>
+            <div className="col-5">
+              <div className="form-floating mb-3">
+                <input
+                type="text"
+                name="amount"
+                id="amount"
+                placeholder="Amount"
+                value={this.state.amount}
+                onChange={this.handleAmountChange}
+                className="mb-2 form-control form-control-sm"
+                required />
+                <label htmlFor="floatingInput">Amount</label>
+              </div>
+            </div>
+            <div className="d-flex">
+              <button type="button" id="add-ingredient" className="d-block w-100 btn btn-outline-primary mb-3">add ingredient</button>
+            </div>
           </div>
-          <input
+          <div className="form-floating mb-3">
+            <textarea
             type="text"
+            rows="3"
             name="directions"
             id="directions"
-            placeholder="recipe directions here"
+            placeholder="Directions"
             value={this.state.directions}
             onChange={this.handleDirectionsChange}
+            className="mb-2 form-control form-control-sm"
             required />
-          <div>
-            <label htmlFor="image">
-              Image
-            </label>
+            <label htmlFor="floatingInput">Directions</label>
           </div>
+          <label htmlFor="image">
+            Image
+          </label>
           <input
-            type="text"
+            type="file"
             name="image"
             id="image"
-            placeholder="Choose file"
+            placeholder="Browse"
             value={this.state.image}
             onChange={this.handleImageChange}
+            className="mb-3 form-control form-control-sm"
             required />
-          <div>
-            <label htmlFor="prepTime">
-              Prep Time
-            </label>
-          </div>
-          <input
+          <div className="row">
+            <div className="col-6">
+              <div className="form-floating mb-3">
+                <input
             type="text"
             name="prepTime"
             id="prepTime"
-            placeholder="ex: 20min"
+            placeholder="Prep Time"
             value={this.state.prepTime}
             onChange={this.handlePrepTimeChange}
+            className="mb-2 form-control form-control-sm"
             required />
-          <label htmlFor="cookTime">
-            Cook Time
-          </label>
-          <input
+                <label htmlFor="floatingInput">Prep Time</label>
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="form-floating mb-3">
+                <input
             type="text"
             name="cookTime"
             id="cookTime"
-            placeholder="ex: 15min"
+            placeholder="Cook Time"
             value={this.state.cookTime}
             onChange={this.handleCookTimeChange}
+            className="mb-3 form-control form-control-sm"
             required />
+                <label htmlFor="floatingInput">Cook Time</label>
+              </div>
+            </div>
+          </div>
           <div>
             <label htmlFor="course">
               Course
             </label>
           </div>
-          <label htmlFor="beverage">
-            <input
+          <div className="row">
+            <div className="col-6">
+              <label htmlFor="beverage" className="word">
+                <input
             type="checkbox"
             name="course-option"
             id="beverage"
             defaultChecked={this.state.beverage}
             onChange={this.handleBeverageChange}
+            className="form-check-input mb-2 me-2 align-middle"
             />
-            Beverage
-          </label>
-          <label htmlFor="breakfastBrunch">
-            <input
+                Beverage
+              </label>
+            </div>
+            <div className="col-6">
+              <label htmlFor="breakfast" className="word">
+                <input
             type="checkbox"
             name="course-option"
-            id="breakfastBrunch"
+            id="breakfast"
             value={this.state.breakfastBrunch}
             onChange={this.handleBreakfastBrunchChange}
+            className="form-check-input mb-2 me-2 align-middle"
             />
-            Breakfast/Brunch
-          </label>
-          <label htmlFor="lunch">
-            <input
+                Breakfast
+              </label>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label htmlFor="lunch" className="word">
+                <input
             type="checkbox"
             name="course-option"
             id="lunch"
             value={this.state.lunch}
             onChange={this.handleLunchChange}
+            className="form-check-input mb-2 me-2 align-middle"
             />
-            Lunch
-          </label>
-          <label htmlFor="snack">
-            <input
+                Lunch
+              </label>
+            </div>
+            <div className="col-6">
+              <label htmlFor="snack" className="word">
+                <input
             type="checkbox"
             name="course-option"
             id="snack"
             value={this.state.snack}
             onChange={this.handleSnackChange}
+            className="form-check-input mb-2 me-2 align-middle"
             />
-            Snack
-          </label>
-          <label htmlFor="dinner">
-            <input
+                Snack
+              </label>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label htmlFor="dinner" className="word">
+                <input
             type="checkbox"
             name="course-option"
             id="dinner"
             value={this.state.dinner}
             onChange={this.handleDinnerChange}
+            className="form-check-input mb-2 me-2 align-middle"
             />
-            Dinner
-          </label>
+                Dinner
+              </label>
+            </div>
+          </div>
           <div>
             <label htmlFor="cuisine">
               Cuisine
             </label>
           </div>
-          <label htmlFor="western">
-            <input
+          <div className="row">
+            <div className="col-4">
+              <label htmlFor="western" className="word">
+                <input
               type="radio"
               name="cuisine-option"
               id="western"
@@ -324,11 +360,14 @@ export default class CreateRecipe extends React.Component {
               checked={this.state.cuisine === 'western'}
               onChange={this.handleCuisineChange}
               required
+              className="form-check-input me-2 mb-2"
               />
-            Western
-          </label>
-          <label htmlFor="eastern">
-            <input
+                Western
+              </label>
+            </div>
+            <div className="col-4">
+              <label htmlFor="eastern" className="word">
+                <input
               type="radio"
               name="cuisine-option"
               id="eastern"
@@ -336,11 +375,14 @@ export default class CreateRecipe extends React.Component {
               checked={this.state.cuisine === 'eastern'}
               onChange={this.handleCuisineChange}
               required
+              className="form-check-input me-2 mb-2"
               />
-            Eastern
-          </label>
-          <label htmlFor="other">
-            <input
+                Eastern
+              </label>
+            </div>
+            <div className="col-4">
+              <label htmlFor="other" className="word">
+                <input
               type="radio"
               name="cuisine-option"
               id="other"
@@ -348,39 +390,43 @@ export default class CreateRecipe extends React.Component {
               checked={this.state.cuisine === 'other'}
               onChange={this.handleCuisineChange}
               required
+              className="form-check-input me-2 mb-2"
             />
-            Eastern
-          </label>
-          <div>
+                Other
+              </label>
+            </div>
+          </div>
+          <div className="row col-6">
             <label htmlFor="skillLevel">
               Skill Level
             </label>
-          </div>
-          <label htmlFor="easy">
-            <select value={this.state.skillLevel} onChange={this.handleSkillLevelChange}>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </label>
-          <div>
-            <label htmlFor="tags">
-              Tags
+            <label htmlFor="skillLevel">
+              <select value={this.state.skillLevel} onChange={this.handleSkillLevelChange} className="form-select form-select-sm mb-2">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
             </label>
           </div>
-          <input
+          <div className="form-floating mb-1">
+            <input
             type="text"
             name="tags"
             id="tags"
             placeholder="Example: Hamburger, Western"
             value={this.state.tags}
             onChange={this.handleTagsChange}
+            className="form-control form-control-sm"
             required />
-          <p>Separate tags with commas. For example: healthy, paleo, gluten-free, chicken</p>
-          <button
-          type="submit">
-            delicious!
-          </button>
+            <label htmlFor="floatingInput">Tags</label>
+          </div>
+          <p className="tags-text mx-1">Separate tags with commas. For example: healthy, paleo, gluten-free, chicken</p>
+          <div className="d-flex justify-content-center">
+            <button
+          type="submit" className="btn btn-primary btn-sm" id="create-recipe-button">
+              delicious!
+            </button>
+          </div>
         </form>
       </div>
     );

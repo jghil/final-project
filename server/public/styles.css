@@ -1,3 +1,51 @@
 * {
   font-family: "Josefin Sans", sans-serif;
 }
+
+#create-recipe-button {
+  background-color: #ff3e58 !important;
+  border-radius: 18px !important;
+  width: 20rem !important;
+}
+
+#add-ingredient {
+  border-radius: 7px !important;
+  color: #ff3e58;
+  border-color: #ff3e58;
+}
+
+#add-ingredient:hover {
+  background-color: #ff3e58;
+  color: white;
+}
+
+#create-recipe-button:hover {
+  background-color: white !important;
+  color: #ff3e58;
+  border-color: #ff3e58;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.2rem #ffced5 !important;
+  border-color: white !important;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0 #fff !important;
+}
+
+.form-check-input:checked {
+  background-color: #ffced5 !important;
+  border-color: #fff !important;
+}
+
+.tags-text {
+  color: #797979;
+  font-size: 0.75rem;
+}
+
+label,
+h4 {
+  font-style: italic;
+}
