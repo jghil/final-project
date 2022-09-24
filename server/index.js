@@ -28,15 +28,14 @@ app.post('/api/recipes', (req, res) => {
   `;
   const sql2 = `
   insert into "ingredients" ("ingredient", "amount", "recipeId")
-  select "recipeId" from "recipes"
   values ($1, $2, $3)
   returning *
   `;
   const params = [userId, title, description, directions, image, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags];
-  const params2 = [ingredient, amount];
   db.query(sql, params)
     .then(result => {
       let [recipe] = result.rows;
+      const params2 = [ingredient, amount, recipe.recipeId];
       db.query(sql2, params2)
         .then(result => {
           recipe = {
