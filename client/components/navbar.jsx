@@ -1,21 +1,15 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDrumstickBite } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-sm fixed-top navbar-light">
-      <div className="container">
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <a className="navbar-brand" href="#">Brand</a>
-        <div className="collapse navbar-collapse" id="navbar1">
-          <ul className="navbar-nav">
-            <li className="nav-item active">
-              <a className="nav-link" href="#">Link</a>
-            </li>
-          </ul>
-        </div>
+    <nav className="navbar navbar-light bg-light justify-content-between">
+      <div className="col-5 d-flex justify-content-center align-items-baseline">
+        <FontAwesomeIcon icon={faDrumstickBite} id="drumstick"/>
+        <h2>Bite</h2>
       </div>
+      <div className="col-7" />
     </nav>
   );
 }
