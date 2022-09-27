@@ -18,7 +18,7 @@ export default class CreateRecipe extends React.Component {
       snack: false,
       dinner: false,
       cuisine: '',
-      skillLevel: 'easy',
+      skillLevel: 1,
       tags: ''
     };
 
@@ -127,7 +127,7 @@ export default class CreateRecipe extends React.Component {
 
   handleSkillLevelChange(event) {
     this.setState({
-      skillLevel: event.target.value
+      skillLevel: parseInt(event.target.value, 10)
     });
   }
 
@@ -174,7 +174,7 @@ export default class CreateRecipe extends React.Component {
       snack: false,
       dinner: false,
       cuisine: '',
-      skillLevel: 'easy',
+      skillLevel: 1,
       tags: ''
     });
     document.getElementById('form').reset();
@@ -442,9 +442,9 @@ export default class CreateRecipe extends React.Component {
             </label>
             <label htmlFor="skillLevel">
               <select value={this.state.skillLevel} onChange={this.handleSkillLevelChange} className="form-select form-select-sm mb-2">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
+                <option value="1" >Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
               </select>
             </label>
           </div>

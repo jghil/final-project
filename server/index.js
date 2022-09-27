@@ -2,7 +2,7 @@ require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
-const ClientError = require('./client-error');
+// const ClientError = require('./client-error');
 const pg = require('pg');
 
 const db = new pg.Pool({
@@ -18,9 +18,9 @@ app.use(staticMiddleware);
 
 app.post('/api/recipes', (req, res) => {
   const { userId, title, description, directions, image, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags, ingredient, amount } = req.body;
-  if (!title || !description || !directions || !prepTime || !cookTime || !cuisine || !beverage || !breakfast || !dinner || !snack || !lunch || !skillLevel || !tags || !ingredient || !amount) {
-    throw new ClientError(400, 'title, description, directions, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags, ingredient, amount are required fields');
-  }
+  // if (!title || !description || !directions || !prepTime || !cookTime || !cuisine || !beverage || !breakfast || !dinner || !snack || !lunch || !skillLevel || !tags || !ingredient || !amount) {
+  //   throw new ClientError(400, 'title, description, directions, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags, ingredient, amount are required fields');
+  // }
   const sql = `
   insert into "recipes" ("userId", "title", "description", "directions", "image", "prepTime", "cookTime", "cuisine", "beverage", "breakfast", "dinner", "snack", "lunch", "skillLevel", "tags")
   values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)

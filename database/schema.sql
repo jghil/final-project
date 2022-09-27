@@ -23,7 +23,7 @@ CREATE TABLE "public"."recipes" (
     "image" TEXT NOT NULL,
     "prepTime" TEXT NOT NULL,
     "cookTime" TEXT NOT NULL,
-    "cuisine" integer NOT NULL,
+    "cuisine" TEXT NOT NULL,
     "beverage" BOOLEAN NOT NULL,
     "breakfast" BOOLEAN NOT NULL,
     "dinner" BOOLEAN NOT NULL,
