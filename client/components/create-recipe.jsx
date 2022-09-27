@@ -140,9 +140,49 @@ export default class CreateRecipe extends React.Component {
   handleSubmit(event) {
     // console.log(this.state);
     event.preventDefault();
+    const newRecipe = {
+      title: this.state.title,
+      description: this.state.description,
+      ingredients: this.state.ingredients,
+      amount: this.state.amounts,
+      directions: this.state.directions,
+      image: this.state.image,
+      prepTime: this.state.prepTime,
+      cookTime: this.state.cookTime,
+      beverage: this.state.beverage,
+      breakfast: this.state.breakfast,
+      lunch: this.state.lunch,
+      snack: this.state.snack,
+      dinner: this.state.dinner,
+      cuisine: this.state.cuisine,
+      skillLevel: this.state.skillLevel,
+      tags: this.state.tags
+    };
+    this.props.onSubmit(newRecipe);
+    this.setState({
+      title: '',
+      description: '',
+      ingredients: '',
+      amount: '',
+      directions: '',
+      image: '',
+      prepTime: '',
+      cookTime: '',
+      beverage: false,
+      breakfast: false,
+      lunch: false,
+      snack: false,
+      dinner: false,
+      cuisine: '',
+      skillLevel: 'easy',
+      tags: ''
+    });
+    document.getElementById('form').reset();
+
   }
 
   render() {
+    // console.log(this.props);
     return (
       <div className="container shadow my-5 pb-5 rounded" id="create-recipe">
         <div className="d-flex justify-content-center p-4 mb-0">
@@ -155,7 +195,7 @@ export default class CreateRecipe extends React.Component {
             margin: '0 0 1rem'
           }}
         />
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="form">
           <div className="form-floating mb-3">
             <input
             type="text"

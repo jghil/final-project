@@ -50,6 +50,6 @@ h4 {
   font-style: italic;
 }
 
-.navbar {
-  background-color: none !important;
+.transparent {
+  background-color: transparent !important;
 }
