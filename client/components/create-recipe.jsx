@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 export default class CreateRecipe extends React.Component {
   constructor(props) {
@@ -17,8 +19,7 @@ export default class CreateRecipe extends React.Component {
       snack: false,
       dinner: false,
       cuisine: '',
-      skillLevel: 1,
-      tags: ''
+      skillLevel: 1
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -35,7 +36,6 @@ export default class CreateRecipe extends React.Component {
     this.handleDinnerChange = this.handleDinnerChange.bind(this);
     this.handleCuisineChange = this.handleCuisineChange.bind(this);
     this.handleSkillLevelChange = this.handleSkillLevelChange.bind(this);
-    this.handleTagsChange = this.handleTagsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -43,7 +43,7 @@ export default class CreateRecipe extends React.Component {
     return this.state.ingredientAdd.map((el, i) =>
       <div key={i}>
         <div className="row">
-          <div className="col-7">
+          <div className="col-5">
             <div className="form-floating mb-3">
               <input
                 type="text"
@@ -54,10 +54,10 @@ export default class CreateRecipe extends React.Component {
                 onChange={this.handleChange.bind(this, i)}
                 className="mb-2 form-control form-control-sm"
                 required />
-              <label htmlFor="floatingInput">Ingredients</label>
+              <label htmlFor="floatingInput">Ingredient</label>
             </div>
           </div>
-          <div className="col-5">
+          <div className="col-4">
             <div className="form-floating mb-3">
               <input
                 type="text"
@@ -70,6 +70,11 @@ export default class CreateRecipe extends React.Component {
                 required />
               <label htmlFor="floatingInput">Amount</label>
             </div>
+          </div>
+          <div className="col-3 d-flex">
+            <button type="button" onClick={this.removeClick.bind(this, i)} className="btn btn-outline-primary mb-3 w-100" id="trash">
+              <FontAwesomeIcon icon={faTrashCan} />
+            </button>
           </div>
         </div>
       </div>
@@ -89,6 +94,12 @@ export default class CreateRecipe extends React.Component {
         { ingredients: '', amount: '' }
       ]
     }));
+  }
+
+  removeClick(i) {
+    const ingredientAdd = [...this.state.ingredientAdd];
+    ingredientAdd.splice(i, 1);
+    this.setState({ ingredientAdd });
   }
 
   handleTitleChange(event) {
@@ -176,12 +187,6 @@ export default class CreateRecipe extends React.Component {
     });
   }
 
-  handleTagsChange(event) {
-    this.setState({
-      tags: event.target.value
-    });
-  }
-
   handleSubmit(event) {
     // console.log(this.state);
     event.preventDefault();
@@ -200,8 +205,7 @@ export default class CreateRecipe extends React.Component {
       snack: this.state.snack,
       dinner: this.state.dinner,
       cuisine: this.state.cuisine,
-      skillLevel: this.state.skillLevel,
-      tags: this.state.tags
+      skillLevel: this.state.skillLevel
     };
     this.props.onSubmit(newRecipe);
     this.setState({
@@ -218,8 +222,7 @@ export default class CreateRecipe extends React.Component {
       snack: false,
       dinner: false,
       cuisine: '',
-      skillLevel: 1,
-      tags: ''
+      skillLevel: 1
     });
     document.getElementById('form').reset();
 
@@ -265,6 +268,9 @@ export default class CreateRecipe extends React.Component {
             <label htmlFor="floatingInput">Description</label>
           </div>
           {this.createUI()}
+          <div className="d-flex">
+            <button type="button" onClick={this.addClick.bind(this)} id="add-ingredient" className="d-block w-100 btn btn-outline-primary mb-3">add ingredient</button>
+          </div>
           {/* <div className="row">
             <div className="col-7">
               <div className="form-floating mb-3">
@@ -486,26 +492,13 @@ export default class CreateRecipe extends React.Component {
               Skill Level
             </label>
             <label htmlFor="skillLevel">
-              <select value={this.state.skillLevel} onChange={this.handleSkillLevelChange} className="form-select form-select-sm mb-2">
+              <select value={this.state.skillLevel} onChange={this.handleSkillLevelChange} className="form-select form-select-sm mb-3">
                 <option value="1" >Easy</option>
                 <option value="2">Medium</option>
                 <option value="3">Hard</option>
               </select>
             </label>
           </div>
-          <div className="form-floating mb-1">
-            <input
-            type="text"
-            name="tags"
-            id="tags"
-            placeholder="Example: Hamburger, Western"
-            value={this.state.tags}
-            onChange={this.handleTagsChange}
-            className="form-control form-control-sm"
-            required />
-            <label htmlFor="floatingInput">Tags</label>
-          </div>
-          <p className="tags-text mx-1">Separate tags with commas. For example: healthy, paleo, gluten-free, chicken</p>
           <div className="d-flex justify-content-center">
             <button
           type="submit" className="btn btn-primary btn-sm" id="create-recipe-button">

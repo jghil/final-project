@@ -12,9 +12,22 @@
   border-radius: 7px !important;
   color: #ff3e58;
   border-color: #ff3e58;
+  font-size: 1rem !important;
 }
 
 #add-ingredient:hover {
+  background-color: #ff3e58;
+  color: white;
+}
+
+#trash {
+  border-radius: 7px !important;
+  color: #ff3e58;
+  border-color: #ff3e58;
+  font-size: 1rem !important;
+}
+
+#trash:hover {
   background-color: #ff3e58;
   color: white;
 }
