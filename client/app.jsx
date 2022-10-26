@@ -2,7 +2,6 @@ import React from 'react';
 // import Home from './pages/home';
 import Navbar from './components/navbar';
 import CreateRecipe from './components/create-recipe';
-import BackGround from './components/background';
 // import parseRoute from './lib/parse-route.js';
 
 export default class App extends React.Component {
@@ -37,8 +36,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <BackGround />
+      <div className="background-picture">
         <Navbar/>
         <CreateRecipe onSubmit={this.addRecipe}/>
       </div>

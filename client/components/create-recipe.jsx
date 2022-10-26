@@ -8,7 +8,7 @@ export default class CreateRecipe extends React.Component {
     this.state = {
       title: '',
       description: '',
-      ingredientAdd: [{ ingredients: '', amount: '' }],
+      ingredientAdd: [{ ingredients: '' }],
       directions: '',
       image: '',
       prepTime: '',
@@ -18,7 +18,6 @@ export default class CreateRecipe extends React.Component {
       lunch: false,
       snack: false,
       dinner: false,
-      cuisine: '',
       skillLevel: 1
     };
 
@@ -34,7 +33,6 @@ export default class CreateRecipe extends React.Component {
     this.handleLunchChange = this.handleLunchChange.bind(this);
     this.handleSnackChange = this.handleSnackChange.bind(this);
     this.handleDinnerChange = this.handleDinnerChange.bind(this);
-    this.handleCuisineChange = this.handleCuisineChange.bind(this);
     this.handleSkillLevelChange = this.handleSkillLevelChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -43,7 +41,7 @@ export default class CreateRecipe extends React.Component {
     return this.state.ingredientAdd.map((el, i) =>
       <div key={i}>
         <div className="row">
-          <div className="col-5">
+          <div className="col-9">
             <div className="form-floating mb-3">
               <input
                 type="text"
@@ -54,21 +52,7 @@ export default class CreateRecipe extends React.Component {
                 onChange={this.handleChange.bind(this, i)}
                 className="mb-2 form-control form-control-sm"
                 required />
-              <label htmlFor="floatingInput">Ingredient</label>
-            </div>
-          </div>
-          <div className="col-4">
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                name="amount"
-                id="amount"
-                placeholder="Amount"
-                value={el.amount || ''}
-                onChange={this.handleChange.bind(this, i)}
-                className="mb-2 form-control form-control-sm"
-                required />
-              <label htmlFor="floatingInput">Amount</label>
+              <label htmlFor="floatingInput">Ingredient and Amount</label>
             </div>
           </div>
           <div className="col-3 d-flex">
@@ -91,7 +75,7 @@ export default class CreateRecipe extends React.Component {
     this.setState(prevState => ({
       ingredientAdd: [
         ...prevState.ingredientAdd,
-        { ingredients: '', amount: '' }
+        { ingredients: '' }
       ]
     }));
   }
@@ -175,12 +159,6 @@ export default class CreateRecipe extends React.Component {
     });
   }
 
-  handleCuisineChange(event) {
-    this.setState({
-      cuisine: event.target.value
-    });
-  }
-
   handleSkillLevelChange(event) {
     this.setState({
       skillLevel: parseInt(event.target.value, 10)
@@ -194,7 +172,6 @@ export default class CreateRecipe extends React.Component {
       title: this.state.title,
       description: this.state.description,
       ingredientAdd: this.state.ingredientAdd,
-      amount: this.state.amounts,
       directions: this.state.directions,
       image: this.state.image,
       prepTime: this.state.prepTime,
@@ -204,14 +181,13 @@ export default class CreateRecipe extends React.Component {
       lunch: this.state.lunch,
       snack: this.state.snack,
       dinner: this.state.dinner,
-      cuisine: this.state.cuisine,
       skillLevel: this.state.skillLevel
     };
     this.props.onSubmit(newRecipe);
     this.setState({
       title: '',
       description: '',
-      ingredientAdd: [{ ingredients: '', amount: '' }],
+      ingredientAdd: [{ ingredients: '' }],
       directions: '',
       image: '',
       prepTime: '',
@@ -221,7 +197,6 @@ export default class CreateRecipe extends React.Component {
       lunch: false,
       snack: false,
       dinner: false,
-      cuisine: '',
       skillLevel: 1
     });
     document.getElementById('form').reset();
@@ -229,10 +204,9 @@ export default class CreateRecipe extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
-      <div className="container shadow my-5 pb-5 rounded" id="create-recipe">
-        <div className="d-flex justify-content-center p-4 mb-0">
+      <div className="container shadow pb-4 rounded" id="create-recipe">
+        <div className="d-flex justify-content-center p-4">
           <h4 className="font-italic">Add a Recipe</h4>
         </div>
         <div
@@ -420,7 +394,7 @@ export default class CreateRecipe extends React.Component {
               </label>
             </div>
           </div>
-          <div className="row">
+          <div className="row mb-2">
             <div className="col-6">
               <label htmlFor="dinner" className="word">
                 <input
@@ -432,58 +406,6 @@ export default class CreateRecipe extends React.Component {
             className="form-check-input mb-2 me-2 align-middle"
             />
                 Dinner
-              </label>
-            </div>
-          </div>
-          <div>
-            <label htmlFor="cuisine">
-              Cuisine
-            </label>
-          </div>
-          <div className="row">
-            <div className="col-4">
-              <label htmlFor="western" className="word">
-                <input
-              type="radio"
-              name="cuisine-option"
-              id="western"
-              value='western'
-              checked={this.state.cuisine === 'western'}
-              onChange={this.handleCuisineChange}
-              required
-              className="form-check-input me-2 mb-2"
-              />
-                Western
-              </label>
-            </div>
-            <div className="col-4">
-              <label htmlFor="eastern" className="word">
-                <input
-              type="radio"
-              name="cuisine-option"
-              id="eastern"
-              value='eastern'
-              checked={this.state.cuisine === 'eastern'}
-              onChange={this.handleCuisineChange}
-              required
-              className="form-check-input me-2 mb-2"
-              />
-                Eastern
-              </label>
-            </div>
-            <div className="col-4">
-              <label htmlFor="other" className="word">
-                <input
-              type="radio"
-              name="cuisine-option"
-              id="other"
-              value='other'
-              checked={this.state.cuisine === 'other'}
-              onChange={this.handleCuisineChange}
-              required
-              className="form-check-input me-2 mb-2"
-            />
-                Other
               </label>
             </div>
           </div>
@@ -501,7 +423,7 @@ export default class CreateRecipe extends React.Component {
           </div>
           <div className="d-flex justify-content-center">
             <button
-          type="submit" className="btn btn-primary btn-sm" id="create-recipe-button">
+          type="submit" className="btn btn-primary btn-med" id="create-recipe-button">
               delicious!
             </button>
           </div>

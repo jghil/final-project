@@ -1,7 +1,7 @@
 @media only screen and (min-width: 375px) {
   #create-recipe {
     width: 80%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     font-size: 0.8rem;
     height: auto;
   }
@@ -10,16 +10,12 @@
     font-size: 0.7rem;
     font-style: normal;
   }
-
-  .icons {
-    font-size: 1.5rem;
-  }
 }
 
 @media only screen and (min-width: 560px) {
   #create-recipe {
     width: 65%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     font-size: 1rem;
     height: auto;
   }
@@ -27,17 +23,13 @@
   .word {
     font-size: 1rem;
     font-style: normal;
-  }
-
-  .icons {
-    font-size: 1.5rem;
   }
 }
 
 @media only screen and (min-width: 740px) {
   #create-recipe {
     width: 50%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     font-size: 1rem;
     height: auto;
   }
@@ -46,18 +38,13 @@
     font-size: 1rem;
     font-style: normal;
   }
-
-  .icons {
-    font-size: 1.5rem;
-  }
 }
 
 .background-picture {
-  background-image: url("./images/background.png");
+  background-image: url("./images/food_wallpaper.jpg");
   background-size: 100%;
   background-repeat: repeat;
-  min-height: 160vh;
-  position: relative;
+  padding-bottom: 3rem;
 }
 
 textarea {
@@ -66,19 +53,8 @@ textarea {
 
 #create-recipe {
   background-color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
 }
 
 #glass {
-  padding-right: 2rem;
-}
-
-#navbar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  padding-right: 1rem;
 }
