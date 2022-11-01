@@ -8,7 +8,7 @@ export default class CreateRecipe extends React.Component {
     this.state = {
       title: '',
       description: '',
-      ingredientAdd: [{ ingredients: '' }],
+      allIngredients: [{ ingredients: '' }],
       directions: '',
       image: '',
       prepTime: '',
@@ -23,7 +23,7 @@ export default class CreateRecipe extends React.Component {
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleIngredientAddChange = this.handleIngredientAddChange.bind(this);
+    this.handleallIngredientsChange = this.handleallIngredientsChange.bind(this);
     this.handleDirectionsChange = this.handleDirectionsChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handlePrepTimeChange = this.handlePrepTimeChange.bind(this);
@@ -38,7 +38,7 @@ export default class CreateRecipe extends React.Component {
   }
 
   createUI() {
-    return this.state.ingredientAdd.map((el, i) =>
+    return this.state.allIngredients.map((el, i) =>
       <div key={i}>
         <div className="row">
           <div className="col-9">
@@ -66,24 +66,24 @@ export default class CreateRecipe extends React.Component {
   }
 
   handleChange(i, event) {
-    const ingredientAdd = [...this.state.ingredientAdd];
-    ingredientAdd[i][event.target.id] = event.target.value;
-    this.setState({ ingredientAdd });
+    const allIngredients = [...this.state.allIngredients];
+    allIngredients[i][event.target.id] = event.target.value;
+    this.setState({ allIngredients });
   }
 
   addClick() {
     this.setState(prevState => ({
-      ingredientAdd: [
-        ...prevState.ingredientAdd,
+      allIngredients: [
+        ...prevState.allIngredients,
         { ingredients: '' }
       ]
     }));
   }
 
-  removeClick(i) {
-    const ingredientAdd = [...this.state.ingredientAdd];
-    ingredientAdd.splice(i, 1);
-    this.setState({ ingredientAdd });
+  removeClick(event) {
+    const allIngredients = [...this.state.allIngredients];
+    allIngredients.splice(event, 1);
+    this.setState({ allIngredients });
   }
 
   handleTitleChange(event) {
@@ -98,10 +98,10 @@ export default class CreateRecipe extends React.Component {
     });
   }
 
-  handleIngredientAddChange(event) {
+  handleallIngredientsChange(event) {
     this.setState({
-      ingredientAdd:
-      [{ ingredients: event.target.value, amount: event.target.value }]
+      allIngredients:
+        [{ ingredients: event.target.value }]
     });
   }
 
@@ -171,7 +171,7 @@ export default class CreateRecipe extends React.Component {
     const newRecipe = {
       title: this.state.title,
       description: this.state.description,
-      ingredientAdd: this.state.ingredientAdd,
+      allIngredients: this.state.allIngredients,
       directions: this.state.directions,
       image: this.state.image,
       prepTime: this.state.prepTime,
@@ -187,7 +187,7 @@ export default class CreateRecipe extends React.Component {
     this.setState({
       title: '',
       description: '',
-      ingredientAdd: [{ ingredients: '' }],
+      allIngredients: [{ ingredients: '' }],
       directions: '',
       image: '',
       prepTime: '',
@@ -200,7 +200,6 @@ export default class CreateRecipe extends React.Component {
       skillLevel: 1
     });
     document.getElementById('form').reset();
-
   }
 
   render() {
@@ -219,26 +218,26 @@ export default class CreateRecipe extends React.Component {
         <form onSubmit={this.handleSubmit} id="form">
           <div className="form-floating mb-3">
             <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Example: Classic Cheeseburger"
-            value={this.state.title}
-            onChange={this.handleTitleChange}
-            className="form-control form-control mb-2"
-            required/>
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Example: Classic Cheeseburger"
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+              className="form-control form-control mb-2"
+              required />
             <label htmlFor="floatingInput">Title</label>
           </div>
           <div className="form-floating mb-3">
             <textarea
-            type="text"
-            name="description"
-            id="description"
-            placeholder="The most delicious cheeseburger.."
-            className="mb-2 form-control form-control"
-            value={this.state.description}
-            onChange={this.handleDescriptionChange}
-            required />
+              type="text"
+              name="description"
+              id="description"
+              placeholder="The most delicious cheeseburger.."
+              className="mb-2 form-control form-control"
+              value={this.state.description}
+              onChange={this.handleDescriptionChange}
+              required />
             <label htmlFor="floatingInput">Description</label>
           </div>
           {this.createUI()}
@@ -280,15 +279,15 @@ export default class CreateRecipe extends React.Component {
           </div> */}
           <div className="form-floating mb-3">
             <textarea
-            type="text"
-            rows="3"
-            name="directions"
-            id="directions"
-            placeholder="Directions"
-            value={this.state.directions}
-            onChange={this.handleDirectionsChange}
-            className="mb-2 form-control form-control-sm"
-            required />
+              type="text"
+              rows="3"
+              name="directions"
+              id="directions"
+              placeholder="Directions"
+              value={this.state.directions}
+              onChange={this.handleDirectionsChange}
+              className="mb-2 form-control form-control-sm"
+              required />
             <label htmlFor="floatingInput">Directions</label>
           </div>
           <label htmlFor="image">
@@ -307,28 +306,28 @@ export default class CreateRecipe extends React.Component {
             <div className="col-6">
               <div className="form-floating mb-3">
                 <input
-            type="text"
-            name="prepTime"
-            id="prepTime"
-            placeholder="Prep Time"
-            value={this.state.prepTime}
-            onChange={this.handlePrepTimeChange}
-            className="mb-2 form-control form-control-sm"
-            required />
+                  type="text"
+                  name="prepTime"
+                  id="prepTime"
+                  placeholder="Prep Time"
+                  value={this.state.prepTime}
+                  onChange={this.handlePrepTimeChange}
+                  className="mb-2 form-control form-control-sm"
+                  required />
                 <label htmlFor="floatingInput">Prep Time</label>
               </div>
             </div>
             <div className="col-6">
               <div className="form-floating mb-3">
                 <input
-            type="text"
-            name="cookTime"
-            id="cookTime"
-            placeholder="Cook Time"
-            value={this.state.cookTime}
-            onChange={this.handleCookTimeChange}
-            className="mb-3 form-control form-control-sm"
-            required />
+                  type="text"
+                  name="cookTime"
+                  id="cookTime"
+                  placeholder="Cook Time"
+                  value={this.state.cookTime}
+                  onChange={this.handleCookTimeChange}
+                  className="mb-3 form-control form-control-sm"
+                  required />
                 <label htmlFor="floatingInput">Cook Time</label>
               </div>
             </div>
@@ -342,26 +341,26 @@ export default class CreateRecipe extends React.Component {
             <div className="col-6">
               <label htmlFor="beverage" className="word">
                 <input
-            type="checkbox"
-            name="course-option"
-            id="beverage"
-            defaultChecked={this.state.beverage}
-            onChange={this.handleBeverageChange}
-            className="form-check-input mb-2 me-2 align-middle"
-            />
+                  type="checkbox"
+                  name="course-option"
+                  id="beverage"
+                  defaultChecked={this.state.beverage}
+                  onChange={this.handleBeverageChange}
+                  className="form-check-input mb-2 me-2 align-middle"
+                />
                 Beverage
               </label>
             </div>
             <div className="col-6">
               <label htmlFor="breakfast" className="word">
                 <input
-            type="checkbox"
-            name="course-option"
-            id="breakfast"
-            value={this.state.breakfastBrunch}
-            onChange={this.handleBreakfastBrunchChange}
-            className="form-check-input mb-2 me-2 align-middle"
-            />
+                  type="checkbox"
+                  name="course-option"
+                  id="breakfast"
+                  value={this.state.breakfast}
+                  onChange={this.handleBreakfastChange}
+                  className="form-check-input mb-2 me-2 align-middle"
+                />
                 Breakfast
               </label>
             </div>
@@ -370,26 +369,26 @@ export default class CreateRecipe extends React.Component {
             <div className="col-6">
               <label htmlFor="lunch" className="word">
                 <input
-            type="checkbox"
-            name="course-option"
-            id="lunch"
-            value={this.state.lunch}
-            onChange={this.handleLunchChange}
-            className="form-check-input mb-2 me-2 align-middle"
-            />
+                  type="checkbox"
+                  name="course-option"
+                  id="lunch"
+                  value={this.state.lunch}
+                  onChange={this.handleLunchChange}
+                  className="form-check-input mb-2 me-2 align-middle"
+                />
                 Lunch
               </label>
             </div>
             <div className="col-6">
               <label htmlFor="snack" className="word">
                 <input
-            type="checkbox"
-            name="course-option"
-            id="snack"
-            value={this.state.snack}
-            onChange={this.handleSnackChange}
-            className="form-check-input mb-2 me-2 align-middle"
-            />
+                  type="checkbox"
+                  name="course-option"
+                  id="snack"
+                  value={this.state.snack}
+                  onChange={this.handleSnackChange}
+                  className="form-check-input mb-2 me-2 align-middle"
+                />
                 Snack
               </label>
             </div>
@@ -398,13 +397,13 @@ export default class CreateRecipe extends React.Component {
             <div className="col-6">
               <label htmlFor="dinner" className="word">
                 <input
-            type="checkbox"
-            name="course-option"
-            id="dinner"
-            value={this.state.dinner}
-            onChange={this.handleDinnerChange}
-            className="form-check-input mb-2 me-2 align-middle"
-            />
+                  type="checkbox"
+                  name="course-option"
+                  id="dinner"
+                  value={this.state.dinner}
+                  onChange={this.handleDinnerChange}
+                  className="form-check-input mb-2 me-2 align-middle"
+                />
                 Dinner
               </label>
             </div>
@@ -423,7 +422,7 @@ export default class CreateRecipe extends React.Component {
           </div>
           <div className="d-flex justify-content-center">
             <button
-          type="submit" className="btn btn-primary btn-med" id="create-recipe-button">
+              type="submit" className="btn btn-primary btn-med" id="create-recipe-button">
               delicious!
             </button>
           </div>

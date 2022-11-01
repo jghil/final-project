@@ -17,31 +17,36 @@ app.use(jsonMiddleware);
 app.use(staticMiddleware);
 
 app.post('/api/recipes', (req, res) => {
-  const { userId, title, description, directions, image, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags, ingredient, amount } = req.body;
-  // if (!title || !description || !directions || !prepTime || !cookTime || !cuisine || !beverage || !breakfast || !dinner || !snack || !lunch || !skillLevel || !tags || !ingredient || !amount) {
-  //   throw new ClientError(400, 'title, description, directions, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags, ingredient, amount are required fields');
-  // }
+  let { userId, title, description, directions, image, prepTime, cookTime, beverage, breakfast, dinner, snack, lunch, skillLevel, allIngredients } = req.body;
+  userId = 1;
+
+  if (!userId || !title || !description || !directions || !image || !prepTime || !cookTime || !skillLevel || !allIngredients) {
+    res.status(400).json({
+      error: 'please fill in all required fields'
+    });
+    return;
+  }
+
   const sql = `
-  insert into "recipes" ("userId", "title", "description", "directions", "image", "prepTime", "cookTime", "cuisine", "beverage", "breakfast", "dinner", "snack", "lunch", "skillLevel", "tags")
-  values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+  insert into "recipes" ("userId", "title", "description", "directions", "image", "prepTime", "cookTime", "beverage", "breakfast", "dinner", "snack", "lunch", "skillLevel")
+  values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
   returning *
   `;
   const sql2 = `
-  insert into "ingredients" ("ingredient", "amount", "recipeId")
-  values ($1, $2, $3)
+  insert into "ingredients" ("allIngredients", "recipeId")
+  values ($1, $2)
   returning *
   `;
-  const params = [userId, title, description, directions, image, prepTime, cookTime, cuisine, beverage, breakfast, dinner, snack, lunch, skillLevel, tags];
+  const params = [userId, title, description, directions, image, prepTime, cookTime, beverage, breakfast, dinner, snack, lunch, skillLevel];
   db.query(sql, params)
     .then(result => {
       let [recipe] = result.rows;
-      const params2 = [ingredient, amount, recipe.recipeId];
+      const params2 = [allIngredients, recipe.recipeId];
       db.query(sql2, params2)
         .then(result => {
           recipe = {
-            ingredients: [{
-              ingredient, amount
-            }]
+            ingredients:
+              allIngredients
           };
           res.status(201).json(recipe);
         });
