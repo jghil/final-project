@@ -17,7 +17,7 @@ app.use(jsonMiddleware);
 app.use(staticMiddleware);
 
 app.post('/api/recipes', (req, res) => {
-  let { userId, title, description, directions, image, prepTime, cookTime, beverage, breakfast, dinner, snack, lunch, skillLevel, allIngredients } = req.body;
+  let { userId, title, description, directions, image, prepTime, cookTime, skillLevel, allIngredients } = req.body;
   userId = 1;
 
   if (!userId || !title || !description || !directions || !image || !prepTime || !cookTime || !skillLevel || !allIngredients) {
@@ -28,8 +28,8 @@ app.post('/api/recipes', (req, res) => {
   }
 
   const sql = `
-  insert into "recipes" ("userId", "title", "description", "directions", "image", "prepTime", "cookTime", "beverage", "breakfast", "dinner", "snack", "lunch", "skillLevel")
-  values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+  insert into "recipes" ("userId", "title", "description", "directions", "image", "prepTime", "cookTime", "skillLevel")
+  values ($1, $2, $3, $4, $5, $6, $7, $8)
   returning *
   `;
   const sql2 = `
@@ -37,7 +37,7 @@ app.post('/api/recipes', (req, res) => {
   values ($1, $2)
   returning *
   `;
-  const params = [userId, title, description, directions, image, prepTime, cookTime, beverage, breakfast, dinner, snack, lunch, skillLevel];
+  const params = [userId, title, description, directions, image, prepTime, cookTime, skillLevel];
   db.query(sql, params)
     .then(result => {
       let [recipe] = result.rows;

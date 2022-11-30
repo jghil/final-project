@@ -23,14 +23,12 @@ CREATE TABLE "public"."recipes" (
     "image" TEXT NOT NULL,
     "prepTime" TEXT NOT NULL,
     "cookTime" TEXT NOT NULL,
-    -- "cuisine" TEXT NOT NULL,
-    "beverage" BOOLEAN NOT NULL,
-    "breakfast" BOOLEAN NOT NULL,
-    "dinner" BOOLEAN NOT NULL,
-    "snack" BOOLEAN NOT NULL,
-    "lunch" BOOLEAN NOT NULL,
+    -- "beverage" BOOLEAN NOT NULL,
+    -- "breakfast" BOOLEAN NOT NULL,
+    -- "dinner" BOOLEAN NOT NULL,
+    -- "snack" BOOLEAN NOT NULL,
+    -- "lunch" BOOLEAN NOT NULL,
     "skillLevel" integer NOT NULL,
-    -- "tags" TEXT NOT NULL,
     CONSTRAINT "recipes_pk" PRIMARY KEY ("recipeId")
 ) WITH (
   OIDS=FALSE
@@ -39,7 +37,6 @@ CREATE TABLE "public"."ingredients" (
     "ingredientId" serial NOT NULL,
     "recipeId" integer NOT NULL,
     "allIngredients" TEXT NOT NULL,
-    -- "amount" TEXT NOT NULL,
     CONSTRAINT "ingredients_pk" PRIMARY KEY ("ingredientId")
 ) WITH (
   OIDS=FALSE
