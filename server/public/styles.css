@@ -1,0 +1,81 @@
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+#create-recipe-button {
+  background-color: #00dbff !important;
+  border-radius: 20px !important;
+  width: 20rem !important;
+  border-color: white;
+}
+
+#create-recipe-button:hover {
+  background-color: white !important;
+  color: #00dbff;
+  border-color: #00dbff;
+}
+
+#add-ingredient {
+  border-radius: 7px !important;
+  color: #00dbff;
+  border-color: #00dbff;
+  font-size: 1rem !important;
+}
+
+#add-ingredient:hover {
+  background-color: #00dbff;
+  color: white;
+}
+
+#trash {
+  border-radius: 7px !important;
+  color: #00dbff;
+  border-color: #00dbff;
+  font-size: 1rem !important;
+}
+
+#trash:hover {
+  background-color: #00dbff;
+  color: white;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.1rem #57e9ff !important;
+  border-color: white !important;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0 #fff !important;
+}
+
+.form-check-input:checked {
+  background-color: #57e9ff !important;
+  border-color: #fff !important;
+}
+
+.tags-text {
+  color: #797979;
+  font-size: 0.75rem;
+}
+
+label,
+h4 {
+  font-style: italic;
+}
+
+.bite {
+  text-shadow: 1px 0 0 white, 0 1px 0 white, -1px 0 0 white, 0 -1px 0 white;
+  padding-left: 0.2rem;
+}
+
+.icons {
+  font-size: 1.5rem;
+  stroke: white;
+  stroke-width: 5%;
+  cursor: pointer;
+}
+
+.icons:hover {
+  color: #fd601a;
+}

@@ -1,0 +1,60 @@
+@media only screen and (min-width: 375px) {
+  #create-recipe {
+    width: 80%;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    height: auto;
+  }
+
+  .word {
+    font-size: 0.7rem;
+    font-style: normal;
+  }
+}
+
+@media only screen and (min-width: 560px) {
+  #create-recipe {
+    width: 65%;
+    padding: 0 1rem;
+    font-size: 1rem;
+    height: auto;
+  }
+
+  .word {
+    font-size: 1rem;
+    font-style: normal;
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  #create-recipe {
+    width: 50%;
+    padding: 0 1rem;
+    font-size: 1rem;
+    height: auto;
+  }
+
+  .word {
+    font-size: 1rem;
+    font-style: normal;
+  }
+}
+
+.background-picture {
+  background-image: url("./images/food_wallpaper.jpg");
+  background-size: 100%;
+  background-repeat: repeat;
+  padding-bottom: 3rem;
+}
+
+textarea {
+  height: 100px !important;
+}
+
+#create-recipe {
+  background-color: white;
+}
+
+#glass {
+  padding-right: 1rem;
+}
