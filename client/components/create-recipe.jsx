@@ -244,39 +244,6 @@ export default class CreateRecipe extends React.Component {
           <div className="d-flex">
             <button type="button" onClick={this.addClick.bind(this)} id="add-ingredient" className="d-block w-100 btn btn-outline-primary mb-3">add ingredient</button>
           </div>
-          {/* <div className="row">
-            <div className="col-7">
-              <div className="form-floating mb-3">
-                <input
-            type="text"
-            name="ingredients"
-            id="ingredients"
-            placeholder="Recipe Ingredients"
-            value={this.state.ingredients}
-            onChange={this.handleIngredientsChange}
-            className="mb-2 form-control form-control-sm"
-            required />
-                <label htmlFor="floatingInput">Ingredients</label>
-              </div>
-            </div>
-            <div className="col-5">
-              <div className="form-floating mb-3">
-                <input
-                type="text"
-                name="amount"
-                id="amount"
-                placeholder="Amount"
-                value={this.state.amount}
-                onChange={this.handleAmountChange}
-                className="mb-2 form-control form-control-sm"
-                required />
-                <label htmlFor="floatingInput">Amount</label>
-              </div>
-            </div>
-            <div className="d-flex">
-              <button type="button" id="add-ingredient" className="d-block w-100 btn btn-outline-primary mb-3">add ingredient</button>
-            </div>
-          </div> */}
           <div className="form-floating mb-3">
             <textarea
               type="text"
